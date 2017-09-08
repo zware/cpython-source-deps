@@ -32,6 +32,7 @@
 
 #ifdef _WIN64
 #include <windows.h>
+#define MS_WIN64
 #endif
 
 #include <ffi.h>
