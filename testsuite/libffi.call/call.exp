@@ -19,22 +19,9 @@ libffi-init
 
 global srcdir subdir
 
-set tlist [lsearch -inline -all -not -glob [lsort [glob -nocomplain -- $srcdir/$subdir/*.{c,cc}]] *complex*]
-set ctlist [lsearch -inline -all -glob [lsort [glob -nocomplain -- $srcdir/$subdir/*.{c,cc}]] *complex*]
+set tlist [lsort [glob -nocomplain -- $srcdir/$subdir/*.{c,cc}]]
 
 run-many-tests $tlist ""
-
-if { ![istarget s390*] } {
-
-    foreach test $ctlist {
-	unsupported "$test"
-    }
-
-} else {
-
-  run-many-tests $ctlist ""
-
-}
 
 dg-finish
 

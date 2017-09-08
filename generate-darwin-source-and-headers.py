@@ -14,12 +14,12 @@ class simulator_platform(Platform):
     sdk = 'iphonesimulator'
     arch = 'i386'
     triple = 'i386-apple-darwin11'
-    version_min = '-miphoneos-version-min=5.1.1'
+    version_min = '-miphoneos-version-min=7.0'
 
     prefix = "#ifdef __i386__\n\n"
     suffix = "\n\n#endif"
     src_dir = 'x86'
-    src_files = ['darwin.S', 'win32.S', 'ffi.c']
+    src_files = ['sysv.S', 'ffi.c']
 
 
 class simulator64_platform(Platform):
@@ -32,7 +32,7 @@ class simulator64_platform(Platform):
     prefix = "#ifdef __x86_64__\n\n"
     suffix = "\n\n#endif"
     src_dir = 'x86'
-    src_files = ['darwin64.S', 'ffi64.c']
+    src_files = ['unix64.S', 'ffi64.c']
 
 
 class device_platform(Platform):
@@ -40,7 +40,7 @@ class device_platform(Platform):
     sdk = 'iphoneos'
     arch = 'armv7'
     triple = 'arm-apple-darwin11'
-    version_min = '-miphoneos-version-min=5.1.1'
+    version_min = '-miphoneos-version-min=7.0'
 
     prefix = "#ifdef __arm__\n\n"
     suffix = "\n\n#endif"
@@ -68,7 +68,7 @@ class desktop32_platform(Platform):
     triple = 'i386-apple-darwin10'
     version_min = '-mmacosx-version-min=10.6'
     src_dir = 'x86'
-    src_files = ['darwin.S', 'win32.S', 'ffi.c']
+    src_files = ['sysv.S', 'ffi.c']
 
     prefix = "#ifdef __i386__\n\n"
     suffix = "\n\n#endif"
@@ -84,16 +84,14 @@ class desktop64_platform(Platform):
     prefix = "#ifdef __x86_64__\n\n"
     suffix = "\n\n#endif"
     src_dir = 'x86'
-    src_files = ['darwin64.S', 'ffi64.c']
+    src_files = ['unix64.S', 'ffi64.c']
 
 
 def mkdir_p(path):
     try:
         os.makedirs(path)
     except OSError as exc:  # Python >2.5
-        if exc.errno == errno.EEXIST:
-            pass
-        else:
+        if exc.errno != errno.EEXIST:
             raise
 
 
