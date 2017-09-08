@@ -41,7 +41,9 @@
 /* #undef HAVE_ALLOCA_H */
 
 /* Define if your assembler supports .ascii. */
+#ifndef MS_WIN64
 #define HAVE_AS_ASCII_PSEUDO_OP 1
+#endif
 
 /* Define if your assembler supports .cfi_* directives. */
 /* #undef HAVE_AS_CFI_PSEUDO_OP */
@@ -54,13 +56,17 @@
 /* #undef HAVE_AS_SPARC_UA_PCREL */
 
 /* Define if your assembler supports .string. */
+#ifndef MS_WIN64
 #define HAVE_AS_STRING_PSEUDO_OP 1
+#endif
 
 /* Define if your assembler supports unwind section type. */
 /* #undef HAVE_AS_X86_64_UNWIND_SECTION_TYPE */
 
 /* Define if your assembler supports PC relative relocs. */
+#ifndef MS_WIN64
 #define HAVE_AS_X86_PCREL 1
+#endif
 
 /* Define to 1 if you have the <dlfcn.h> header file. */
 /* #undef HAVE_DLFCN_H */
